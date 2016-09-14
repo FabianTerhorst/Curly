@@ -121,11 +121,11 @@ public extension UIBarButtonItem {
 
 public extension UIControl {
     
-    //Objective C support
+    /*//Objective C support
     public func addAction(events:UIControlEvents,block:(UIControl)->Void)
     {
         self.addAction(events: events, block: block)
-    }
+    }*/
     
     public func addAction<T:UIControl>(events:UIControlEvents,closure:@escaping(T)->Void) {
         var delegateDictionary = objc_getAssociatedObject(self, &CurlyAssociatedDelegateDictionaryHandle) as! [UInt:[Curly.ControlDelegate]]!
