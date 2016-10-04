@@ -18,7 +18,7 @@ private var CurlyAssociatedDeinitDelegateArrayHandle: UInt8 = 0
 private var CurlyAssociatedLayoutDelegateHandle: UInt8 = 0
 private var CurlyAssociatedConnectionDelegateHandle: UInt8 = 0
 
-//MARK: NSNotification Token Helper Class
+//MARK: Notification Token Helper Class
 
 open class CurlyNotificationToken {
     
@@ -46,7 +46,7 @@ open class CurlyNotificationToken {
 public extension String {
     func observeFrom<T:AnyObject>(listener:T,object:AnyObject? = nil,closure:@escaping (T,Notification)->Void) -> CurlyNotificationToken {
         var token:CurlyNotificationToken? = nil
-        let observer = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: self), object: object, queue: nil) {
+        let observer = NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: self), object: object, queue: nil) {
             note in
             guard let actualToken = token else { return }
             guard let listener = actualToken.listener as? T else {
@@ -77,6 +77,7 @@ public extension UINavigationController {
 }
 
 public extension UIGestureRecognizer {
+
     
     convenience init<T:UIGestureRecognizer>(closure:@escaping(T)->Void) {
         let delegate = Curly.GestureRecognizerDelegate(recognized: closure)
