@@ -78,11 +78,6 @@ public extension UINavigationController {
 
 public extension UIGestureRecognizer {
     
-    //Objective-C Support
-    convenience init (block:@escaping (UIGestureRecognizer)->Void) {
-        self.init(closure:block)
-    }
-    
     convenience init<T:UIGestureRecognizer>(closure:@escaping(T)->Void) {
         let delegate = Curly.GestureRecognizerDelegate(recognized: closure)
         self.init(target: delegate, action: #selector(Curly.GestureRecognizerDelegate.recognizedGestureRecognizer(gr:)))
